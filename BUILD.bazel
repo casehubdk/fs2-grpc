@@ -1,0 +1,29 @@
+load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
+
+scala_library(
+    name = "fs2_grpc",
+    srcs = glob(["codegen/**/*.scala"]),
+    visibility = ["//visibility:public"],
+    deps = [
+      "@maven//:org_scala_lang_scala_library",
+      # "@maven//:com_thesamet_scalapb_compilerplugin_2_13",
+      # "@maven//:org_scala_lang_modules_scala_collection_compat_2_13",
+      # "@maven//:com_thesamet_scalapb_protoc_gen_2_13",
+      # "@maven//:com_thesamet_scalapb_protoc_bridge_2_13",
+      "@maven//:com_google_protobuf_protobuf_java",
+
+      # "@maven//:org_typelevel_protoc_gen_fs2_grpc",
+      # "@maven//:org_typelevel_fs2_grpc_runtime_2_13",
+      # "@maven//:io_grpc_grpc_api",
+      # "@maven//:io_grpc_grpc_context",
+      # "@maven//:com_google_api_grpc_proto_google_iam_v1",
+      # "@maven//:com_google_api_grpc_proto_google_common_protos",
+
+      "@maven//:com_thesamet_scalapb_scalapb_runtime_2_13",
+      # "@maven//:com_thesamet_scalapb_protoc_gen_2_13",
+      # "@maven//:com_thesamet_scalapb_protoc_bridge_2_13",
+      # "@maven//:com_thesamet_scalapb_lenses_2_13",
+      "@maven//:com_thesamet_scalapb_compilerplugin_2_12",
+      "@maven//:com_thesamet_scalapb_protoc_gen_2_12",
+      # "@maven//:com_thesamet_scalapb_protoc_bridge_2_12",
+    ],

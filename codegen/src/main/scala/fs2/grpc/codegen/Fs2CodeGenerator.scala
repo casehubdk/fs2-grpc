@@ -27,7 +27,7 @@ import com.google.protobuf.compiler.PluginProtos
 import protocgen.{CodeGenApp, CodeGenRequest, CodeGenResponse}
 import scalapb.compiler.{DescriptorImplicits, FunctionalPrinter, GeneratorParams}
 import scalapb.options.Scalapb
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 final case class Fs2Params(serviceSuffix: String = "Fs2Grpc")
 
@@ -38,7 +38,7 @@ object Fs2CodeGenerator extends CodeGenApp {
       fs2params: Fs2Params,
       di: DescriptorImplicits
   ): Seq[PluginProtos.CodeGeneratorResponse.File] = {
-    file.getServices.asScala.map { service =>
+    file.getServices.asScala.toSeq.map { service =>
       val p = new Fs2GrpcServicePrinter(service, fs2params.serviceSuffix, di)
 
       import di.{ExtendedServiceDescriptor, ExtendedFileDescriptor}
