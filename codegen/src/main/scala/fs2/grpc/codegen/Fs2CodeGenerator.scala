@@ -38,7 +38,7 @@ object Fs2CodeGenerator extends CodeGenApp {
       fs2params: Fs2Params,
       di: DescriptorImplicits
   ): Seq[PluginProtos.CodeGeneratorResponse.File] = {
-    file.getServices.asScala.map { service =>
+    file.getServices.asScala.toSeq.map { service =>
       val p = new Fs2GrpcServicePrinter(service, fs2params.serviceSuffix, di)
 
       import di.{ExtendedServiceDescriptor, ExtendedFileDescriptor}
