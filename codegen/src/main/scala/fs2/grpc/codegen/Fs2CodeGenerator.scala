@@ -50,7 +50,7 @@ object Fs2CodeGenerator extends CodeGenApp {
     }.toSeq
   }
 
-  private def parseParameters(params: String): Either[String, (GeneratorParams, Fs2Params)] =
+  private def parseParameters(params: String): Either[String, (GeneratorParams, Fs2Params)] = 
     for {
       paramsAndUnparsed <- GeneratorParams.fromStringCollectUnrecognized(params)
       params = paramsAndUnparsed._1
