@@ -24,7 +24,16 @@ declare_deps_provider(
     "@maven//:com_thesamet_scalapb_compilerplugin_2_13",
     "@maven//:com_thesamet_scalapb_protoc_gen_2_13",
     "@maven//:com_thesamet_scalapb_protoc_bridge_2_13",
+
     "@fs2_grpc//:codegen",
+    "@maven//:org_typelevel_cats_core_2_13",
+    "@maven//:org_typelevel_cats_effect_2_13",
+    "@maven//:org_typelevel_cats_effect_kernel_2_13",
+    "@maven//:org_typelevel_cats_effect_std_2_13",
+    "@maven//:org_typelevel_cats_kernel_2_13",
+    "@maven//:co_fs2_fs2_core_2_13",
+    "@maven//:org_typelevel_fs2_grpc_runtime_2_13",
+
     "@maven//:io_grpc_grpc_api",
     "@maven//:io_grpc_grpc_context",
     "@maven//:io_grpc_grpc_core",
