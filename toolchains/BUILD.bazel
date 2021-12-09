@@ -1,0 +1,81 @@
+load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_library")
+load("@io_bazel_rules_scala//scala_proto:scala_proto_toolchain.bzl", "scala_proto_toolchain", "scala_proto_deps_toolchain")
+load("@io_bazel_rules_scala//scala:providers.bzl", "declare_deps_provider")
+
+declare_deps_provider(
+  name = "scalapb_worker_deps_provider",
+  deps_id = "scalapb_worker_deps",
+  deps = [
+    "@maven//:org_scala_lang_scala_library",
+    "@maven//:com_google_protobuf_protobuf_java",
+    "@maven//:com_thesamet_scalapb_protoc_gen_2_13",
+    "@maven//:com_thesamet_scalapb_protoc_bridge_2_13",
+    "@maven//:com_thesamet_scalapb_compilerplugin_2_13",
+  ]
+)
+
+declare_deps_provider(
+  name = "scalapb_compile_deps_provider",
+  deps_id = "scalapb_compile_deps",
+  deps = [
+    "@maven//:com_google_protobuf_protobuf_java",
+    "@maven//:com_thesamet_scalapb_lenses_2_13",
+    "@maven//:com_thesamet_scalapb_scalapb_runtime_2_13",
+    "@maven//:com_thesamet_scalapb_scalapb_runtime_grpc_2_13",
+    "@maven//:com_thesamet_scalapb_compilerplugin_2_13",
+    "@maven//:com_thesamet_scalapb_protoc_gen_2_13",
+    "@maven//:com_thesamet_scalapb_protoc_bridge_2_13",
+    "@fs2_grpc//:codegen",
+    "@maven//:io_grpc_grpc_api",
+    "@maven//:io_grpc_grpc_context",
+    "@maven//:io_grpc_grpc_core",
+    "@maven//:io_grpc_grpc_protobuf",
+    "@maven//:io_grpc_grpc_stub",
+    "@maven//:org_scala_lang_scala_compiler",
+    "@maven//:org_scala_lang_scala_library",
+    "@maven//:org_scala_lang_scala_reflect",
+  ]
+)
+
+declare_deps_provider(
+    name = "scalapb_grpc_deps_provider",
+    deps_id = "scalapb_grpc_deps",
+    deps = [
+      "@maven//:com_thesamet_scalapb_protoc_gen_2_13",
+    ],
+)
+
+scala_proto_deps_toolchain(
+    name = "scala_proto_deps_toolchain_def",
+    dep_providers = [
+        ":scalapb_worker_deps_provider",
+        ":scalapb_compile_deps_provider",
+        ":scalapb_grpc_deps_provider",
+    ],
+)
+
+toolchain(
+    name = "scala_proto_deps_toolchain",
+    toolchain = ":scala_proto_deps_toolchain_def",
+    toolchain_type = "@io_bazel_rules_scala//scala_proto:deps_toolchain_type",
+)
+
+scala_proto_toolchain(
+    name = "scala_proto_fs2_grpc_toolchain_def",
+    extra_generator_dependencies = [
+      "@fs2_grpc//:codegen",
+      "@maven//:com_thesamet_scalapb_protoc_gen_2_13",
+      "@maven//:com_thesamet_scalapb_protoc_bridge_2_13"
+    ],
+    main_generator = "scalapb.ScalaPbCodeGenerator",
+    named_generators = {
+        "fs2": "fs2.grpc.codegen.Fs2CodeGenerator",
+    },
+    with_grpc = True,
+)
+
+toolchain(
+    name = "scala_proto_fs2_grpc_toolchain",
+    toolchain = ":scala_proto_fs2_grpc_toolchain_def",
+    toolchain_type = "@io_bazel_rules_scala//scala_proto:toolchain_type",
+)
