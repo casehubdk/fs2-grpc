@@ -80,6 +80,7 @@ scala_proto_toolchain(
         "fs2": "fs2.grpc.codegen.Fs2CodeGenerator",
     },
     with_grpc = True,
+    with_flat_package = True
 )
 
 toolchain(
