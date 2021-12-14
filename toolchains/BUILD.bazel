@@ -88,3 +88,7 @@ toolchain(
     toolchain = ":scala_proto_fs2_grpc_toolchain_def",
     toolchain_type = "@io_bazel_rules_scala//scala_proto:toolchain_type",
 )
+
+def default_toolchains():
+  register_toolchains(":scala_proto_deps_toolchain")
+  register_toolchains(":scala_proto_fs2_grpc_toolchain")
