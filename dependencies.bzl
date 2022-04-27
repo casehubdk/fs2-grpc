@@ -4,7 +4,7 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 scala_versions = make_scala_versions(
     "2",
     "13",
-    "8",
+    "6",
 )
 
 grpc_version = "1.45.1"
