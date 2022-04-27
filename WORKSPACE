@@ -47,11 +47,11 @@ load("@maven//:defs.bzl", "pinned_maven_install")
 pinned_maven_install()
 
 # scala
-rules_scala_version = "1d98a8013853b73c825c727be9467e5ea15cc262"  # update this as needed
+rules_scala_version = "3dd5d8110d56cfc19722532866cbfc039a6a9612"  # update this as needed
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "50963bf5d38dab524bffe941bf5fd68c06de6e6ee75e6b12a8610de7ca409880",
+    sha256 = "d805d4c3e288f87909c0eba177facc2d945f1eeb67f4bd78e96afc51fa25e03c",
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
@@ -68,3 +68,6 @@ register_toolchains("@scala_things//toolchain")
 
 scala_repositories()
 
+register_toolchains("//toolchains:scala_proto_deps_toolchain")
+
+register_toolchains("//toolchains:scala_proto_fs2_grpc_toolchain")
