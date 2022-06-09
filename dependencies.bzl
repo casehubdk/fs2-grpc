@@ -32,7 +32,7 @@ project_deps = [
     scala_dependency("org.typelevel", "cats-effect", "3.3.12"),
     java_dependency("io.grpc", "grpc-netty-shaded", grpc_version),
     scala_dependency("co.fs2", "fs2-core", "3.2.7"),
-    # scala_dependency("org.typelevel", "fs2-grpc-runtime", "2.3.0"),
+    scala_dependency("org.typelevel", "fs2-grpc-runtime", "2.4.1"),
 ]
 
 def add_scala_fullver(s):
