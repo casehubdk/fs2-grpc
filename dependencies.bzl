@@ -7,7 +7,7 @@ scala_versions = make_scala_versions(
     "7",
 )
 
-grpc_version = "1.47.0"
+grpc_version = "1.48.0"
 
 project_deps = [
     scala_fullver_dependency("org.typelevel", "kind-projector", "0.13.2"),
@@ -29,10 +29,8 @@ project_deps = [
     scala_dependency("com.thesamet.scalapb", "scalapb-runtime-grpc", "0.11.11"),
 
     # usage
-    scala_dependency("org.typelevel", "cats-effect", "3.3.12"),
     java_dependency("io.grpc", "grpc-netty-shaded", grpc_version),
-    scala_dependency("co.fs2", "fs2-core", "3.2.7"),
-    scala_dependency("org.typelevel", "fs2-grpc-runtime", "2.4.10"),
+    scala_dependency("org.typelevel", "fs2-grpc-runtime", "2.4.12"),
 ]
 
 def add_scala_fullver(s):
