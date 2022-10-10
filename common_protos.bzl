@@ -14,5 +14,13 @@ proto_library(
     srcs = glob(["third_party/**/*.proto"]),
     strip_import_prefix = "third_party"
 )
+
+proto_library(
+    name = "scalapb_protos",
+    visibility = ["//visibility:public"],
+    srcs = ["protobuf/scalapb/scalapb.proto"],
+    strip_import_prefix = "protobuf",
+    deps = [":common_protos"]
+)
       """
   )
