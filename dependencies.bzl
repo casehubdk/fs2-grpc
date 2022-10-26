@@ -4,7 +4,7 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 scala_versions = make_scala_versions(
     "2",
     "13",
-    "7",
+    "9",
 )
 
 grpc_version = "1.48.0"
@@ -12,9 +12,9 @@ grpc_version = "1.48.0"
 project_deps = [
     scala_fullver_dependency("org.typelevel", "kind-projector", "0.13.2"),
     # base
-    java_dependency("org.scala-lang", "scala-compiler", "2.13.7"),
-    java_dependency("org.scala-lang", "scala-library", "2.13.7"),
-    java_dependency("org.scala-lang", "scala-reflect", "2.13.7"),
+    java_dependency("org.scala-lang", "scala-compiler", "2.13.9"),
+    java_dependency("org.scala-lang", "scala-library", "2.13.9"),
+    java_dependency("org.scala-lang", "scala-reflect", "2.13.9"),
 
     # gen
     scala_dependency("com.thesamet.scalapb", "compilerplugin", "0.11.11"),
