@@ -30,7 +30,7 @@ project_deps = [
 
     # usage
     java_dependency("io.grpc", "grpc-netty-shaded", grpc_version),
-    scala_dependency("org.typelevel", "fs2-grpc-runtime", "2.4.12"),
+    scala_dependency("org.typelevel", "fs2-grpc-runtime", "2.5.10"),
 ]
 
 def add_scala_fullver(s):
