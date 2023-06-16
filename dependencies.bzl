@@ -7,7 +7,7 @@ scala_versions = make_scala_versions(
     "11",
 )
 
-grpc_version = "1.56.0"
+grpc_version = "1.54.1"
 
 project_deps = [
     scala_fullver_dependency("org.typelevel", "kind-projector", "0.13.2"),
