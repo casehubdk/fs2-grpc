@@ -4,33 +4,33 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 scala_versions = make_scala_versions(
     "2",
     "13",
-    "9",
+    "11",
 )
 
-grpc_version = "1.48.0"
+grpc_version = "1.56.0"
 
 project_deps = [
     scala_fullver_dependency("org.typelevel", "kind-projector", "0.13.2"),
     # base
-    java_dependency("org.scala-lang", "scala-compiler", "2.13.9"),
-    java_dependency("org.scala-lang", "scala-library", "2.13.9"),
-    java_dependency("org.scala-lang", "scala-reflect", "2.13.9"),
+    java_dependency("org.scala-lang", "scala-compiler", "2.13.11"),
+    java_dependency("org.scala-lang", "scala-library", "2.13.11"),
+    java_dependency("org.scala-lang", "scala-reflect", "2.13.11"),
 
     # gen
-    scala_dependency("com.thesamet.scalapb", "compilerplugin", "0.11.11"),
-    scala_dependency("com.thesamet.scalapb", "protoc-gen", "0.9.5"),
+    scala_dependency("com.thesamet.scalapb", "compilerplugin", "0.11.13"),
+    scala_dependency("com.thesamet.scalapb", "scalapb-runtime", "0.11.13"),
+    scala_dependency("com.thesamet.scalapb", "scalapb-runtime-grpc", "0.11.13"),
+    scala_dependency("com.thesamet.scalapb", "protoc-gen", "0.9.6"),
     java_dependency("io.grpc", "grpc-stub", grpc_version),
     java_dependency("io.grpc", "grpc-protobuf", grpc_version),
     java_dependency("io.grpc", "grpc-netty", grpc_version),
     java_dependency("io.grpc", "grpc-netty-shaded", grpc_version),
     java_dependency("io.grpc", "grpc-services", grpc_version),
     java_dependency("io.grpc", "protoc-gen-grpc-java", grpc_version),
-    scala_dependency("com.thesamet.scalapb", "scalapb-runtime", "0.11.11"),
-    scala_dependency("com.thesamet.scalapb", "scalapb-runtime-grpc", "0.11.11"),
 
     # usage
     java_dependency("io.grpc", "grpc-netty-shaded", grpc_version),
-    scala_dependency("org.typelevel", "fs2-grpc-runtime", "2.5.10"),
+    scala_dependency("org.typelevel", "fs2-grpc-runtime", "2.7.4"),
 ]
 
 def add_scala_fullver(s):
