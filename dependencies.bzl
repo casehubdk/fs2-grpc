@@ -1,26 +1,29 @@
-load("@scala_things//:dependencies/dependencies.bzl", "java_dependency", "scala_dependency", "scala_fullver_dependency", "make_scala_versions", "apply_scala_version", "apply_scala_fullver_version")
+load("@scala_things//:dependencies/dependencies.bzl", "java_dependency", "scala_dependency", "scala_fullver_dependency", "make_scala_versions", "apply_scala_version", "apply_scala_fullver_version", "to_string_version")
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 
 scala_versions = make_scala_versions(
-    "2",
-    "13",
-    "11",
+    "3",
+    "3",
+    "0",
 )
 
 grpc_version = "1.54.1"
 
 project_deps = [
-    scala_fullver_dependency("org.typelevel", "kind-projector", "0.13.2"),
+    # scala_fullver_dependency("org.typelevel", "kind-projector", "0.13.2"),
     # base
     java_dependency("org.scala-lang", "scala-compiler", "2.13.11"),
     java_dependency("org.scala-lang", "scala-library", "2.13.11"),
     java_dependency("org.scala-lang", "scala-reflect", "2.13.11"),
 
+    scala_dependency("org.scala-lang", "scala3-library", "3.3.0"),
+    scala_dependency("org.scala-lang", "scala3-compiler", "3.3.0"),
+
     # gen
-    scala_dependency("com.thesamet.scalapb", "compilerplugin", "0.11.13"),
+    java_dependency("com.thesamet.scalapb", "compilerplugin_2.13", "0.11.13"),
     scala_dependency("com.thesamet.scalapb", "scalapb-runtime", "0.11.13"),
     scala_dependency("com.thesamet.scalapb", "scalapb-runtime-grpc", "0.11.13"),
-    scala_dependency("com.thesamet.scalapb", "protoc-gen", "0.9.6"),
+    java_dependency("com.thesamet.scalapb", "protoc-gen_2.13", "0.9.6"),
     java_dependency("io.grpc", "grpc-stub", grpc_version),
     java_dependency("io.grpc", "grpc-protobuf", grpc_version),
     java_dependency("io.grpc", "grpc-netty", grpc_version),
@@ -31,6 +34,7 @@ project_deps = [
     # usage
     java_dependency("io.grpc", "grpc-netty-shaded", grpc_version),
     scala_dependency("org.typelevel", "fs2-grpc-runtime", "2.7.4"),
+    java_dependency("org.typelevel", "fs2-grpc-codegen_2.13", "2.7.4"),
 ]
 
 def add_scala_fullver(s):

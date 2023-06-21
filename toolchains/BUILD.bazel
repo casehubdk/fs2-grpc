@@ -18,31 +18,35 @@ declare_deps_provider(
   deps_id = "scalapb_compile_deps",
   deps = [
     "@maven//:com_google_protobuf_protobuf_java",
-    "@maven//:com_thesamet_scalapb_lenses_2_13",
-    "@maven//:com_thesamet_scalapb_scalapb_runtime_2_13",
-    "@maven//:com_thesamet_scalapb_scalapb_runtime_grpc_2_13",
-    "@maven//:com_thesamet_scalapb_compilerplugin_2_13",
-    "@maven//:com_thesamet_scalapb_protoc_gen_2_13",
-    "@maven//:com_thesamet_scalapb_protoc_bridge_2_13",
+    "@maven//:com_thesamet_scalapb_lenses_3",
+    "@maven//:com_thesamet_scalapb_scalapb_runtime_3",
+    "@maven//:com_thesamet_scalapb_scalapb_runtime_grpc_3",
+    "@maven//:org_scala_lang_scala_library",
+    "@maven//:org_typelevel_cats_effect_3",
+    "@maven//:org_typelevel_cats_effect_kernel_3",
+    "@maven//:org_typelevel_cats_effect_std_3",
+    "@maven//:org_typelevel_cats_core_3",
+    "@maven//:co_fs2_fs2_core_3",
+    "@maven//:org_typelevel_fs2_grpc_runtime_3",
 
-    "@fs2_grpc//:codegen",
-    "@maven//:org_typelevel_cats_core_2_13",
-    "@maven//:org_typelevel_cats_effect_2_13",
-    "@maven//:org_typelevel_cats_effect_kernel_2_13",
-    "@maven//:org_typelevel_cats_effect_std_2_13",
-    "@maven//:org_typelevel_cats_kernel_2_13",
-    "@maven//:co_fs2_fs2_core_2_13",
-    "//:runtime",
-    # "@maven//:org_typelevel_fs2_grpc_runtime_2_13",
+    # "@maven//:com_thesamet_scalapb_compilerplugin_2_13",
+    # "@maven//:com_thesamet_scalapb_protoc_gen_2_13",
+    # "@maven//:com_thesamet_scalapb_protoc_bridge_2_13",
+
+    # "@fs2_grpc//:codegen",
+    # "@maven//:org_typelevel_cats_core_3",
+    # "@maven//:org_typelevel_cats_effect_3",
+    # "@maven//:org_typelevel_cats_effect_kernel_3",
+    # "@maven//:org_typelevel_cats_effect_std_3",
+    # "@maven//:org_typelevel_cats_kernel_3",
+    # "@maven//:co_fs2_fs2_core_3",
+    # "//:runtime",
 
     "@maven//:io_grpc_grpc_api",
     "@maven//:io_grpc_grpc_context",
     "@maven//:io_grpc_grpc_core",
     "@maven//:io_grpc_grpc_protobuf",
     "@maven//:io_grpc_grpc_stub",
-    "@maven//:org_scala_lang_scala_compiler",
-    "@maven//:org_scala_lang_scala_library",
-    "@maven//:org_scala_lang_scala_reflect",
   ]
 )
 
@@ -72,7 +76,7 @@ toolchain(
 scala_proto_toolchain(
     name = "scala_proto_fs2_grpc_toolchain_def",
     extra_generator_dependencies = [
-      "@fs2_grpc//:codegen",
+      "@maven//:org_typelevel_fs2_grpc_codegen_2_13",
       "@maven//:com_thesamet_scalapb_protoc_gen_2_13",
       "@maven//:com_thesamet_scalapb_protoc_bridge_2_13"
     ],

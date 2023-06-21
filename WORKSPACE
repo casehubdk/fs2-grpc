@@ -2,7 +2,7 @@ workspace(name = "fs2_grpc")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-skylib_version = "1.0.3"
+skylib_version = "1.4.1"
 
 http_archive(
     name = "bazel_skylib",
@@ -28,12 +28,16 @@ rules_proto_dependencies()
 
 rules_proto_toolchains()
 
-commit_sha = "4fdfa82cbaf067939871db4c6a4aca92778d68dc"
-http_archive(
+# commit_sha = "4fdfa82cbaf067939871db4c6a4aca92778d68dc"
+# http_archive(
+#     name = "scala_things",
+#     sha256 = "d3bb1d824e18dbf4af157de25e6142eaf009d59232638a050772281c60a4093c",
+#     strip_prefix = "bazel-things-%s" % commit_sha,
+#     url = "https://github.com/casehubdk/bazel-things/archive/%s.zip" % commit_sha,
+# )
+local_repository(
     name = "scala_things",
-    sha256 = "d3bb1d824e18dbf4af157de25e6142eaf009d59232638a050772281c60a4093c",
-    strip_prefix = "bazel-things-%s" % commit_sha,
-    url = "https://github.com/casehubdk/bazel-things/archive/%s.zip" % commit_sha,
+    path = "../bazel-things"
 )
 
 load("@scala_things//:dependencies/init.bzl", "bazel_things_dependencies")
@@ -48,11 +52,11 @@ load("@maven//:defs.bzl", "pinned_maven_install")
 pinned_maven_install()
 
 # scala
-rules_scala_version = "3dd5d8110d56cfc19722532866cbfc039a6a9612"  # update this as needed
+rules_scala_version = "12d60d203591d92572c812f345b45babff688230"  # update this as needed
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "d805d4c3e288f87909c0eba177facc2d945f1eeb67f4bd78e96afc51fa25e03c",
+    sha256 = "5144514f81e63a3337e56d86b2924a22a1d5d9f273e482c2f2fb09639f6388fa",
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
@@ -63,11 +67,20 @@ load("//:dependencies.bzl", "scala_versions")
 
 scala_config(to_string_version(scala_versions))
 
-load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
+load("@io_bazel_rules_scala//scala:scala.bzl", "rules_scala_setup", "rules_scala_toolchain_deps_repositories")
+
+rules_scala_setup()
+
+rules_scala_toolchain_deps_repositories(fetch_sources = True)
+
+# load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
+# scala_register_toolchains()
+
+# load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 register_toolchains("@scala_things//toolchain")
 
-scala_repositories()
+# scala_repositories()
 
 register_toolchains("//toolchains:scala_proto_deps_toolchain")
 
