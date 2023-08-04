@@ -72,3 +72,6 @@ scala_repositories()
 register_toolchains("//toolchains:scala_proto_deps_toolchain")
 
 register_toolchains("//toolchains:scala_proto_fs2_grpc_toolchain")
+
+load("//:common_protos.bzl", "common_protos_dependencies")
+common_protos_dependencies()

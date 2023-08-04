@@ -7,9 +7,12 @@ declare_deps_provider(
   deps = [
     "@maven//:org_scala_lang_scala_library",
     "@maven//:com_google_protobuf_protobuf_java",
+    "@maven//:build_buf_protoc_gen_validate_pgv_java_stub",
     "@maven//:com_thesamet_scalapb_protoc_gen_2_13",
     "@maven//:com_thesamet_scalapb_protoc_bridge_2_13",
     "@maven//:com_thesamet_scalapb_compilerplugin_2_13",
+    "@maven//:com_thesamet_scalapb_scalapb_validate_core_2_13",
+    "@maven//:com_thesamet_scalapb_scalapb_validate_codegen_2_13"
   ]
 )
 
@@ -18,6 +21,7 @@ declare_deps_provider(
   deps_id = "scalapb_compile_deps",
   deps = [
     "@maven//:com_google_protobuf_protobuf_java",
+    "@maven//:build_buf_protoc_gen_validate_pgv_java_stub",
     "@maven//:com_thesamet_scalapb_lenses_2_13",
     "@maven//:com_thesamet_scalapb_scalapb_runtime_2_13",
     "@maven//:com_thesamet_scalapb_scalapb_runtime_grpc_2_13",
@@ -33,6 +37,8 @@ declare_deps_provider(
     "@maven//:org_typelevel_cats_kernel_2_13",
     "@maven//:co_fs2_fs2_core_2_13",
     "//:runtime",
+    "@maven//:com_thesamet_scalapb_scalapb_validate_core_2_13",
+    "@maven//:com_thesamet_scalapb_scalapb_validate_codegen_2_13",
     # "@maven//:org_typelevel_fs2_grpc_runtime_2_13",
 
     "@maven//:io_grpc_grpc_api",
@@ -51,6 +57,8 @@ declare_deps_provider(
     deps_id = "scalapb_grpc_deps",
     deps = [
       "@maven//:com_thesamet_scalapb_protoc_gen_2_13",
+      "@maven//:com_thesamet_scalapb_scalapb_validate_core_2_13",
+      "@maven//:com_thesamet_scalapb_scalapb_validate_codegen_2_13",
     ],
 )
 
@@ -74,11 +82,15 @@ scala_proto_toolchain(
     extra_generator_dependencies = [
       "@fs2_grpc//:codegen",
       "@maven//:com_thesamet_scalapb_protoc_gen_2_13",
-      "@maven//:com_thesamet_scalapb_protoc_bridge_2_13"
+      "@maven//:com_thesamet_scalapb_protoc_bridge_2_13",
+      "@maven//:com_thesamet_scalapb_scalapb_validate_core_2_13",
+      "@maven//:com_thesamet_scalapb_scalapb_validate_codegen_2_13",
     ],
     main_generator = "scalapb.ScalaPbCodeGenerator",
+    # main_generator = "scalapb.validate.compiler.CodeGenerator",
     named_generators = {
         "fs2": "fs2.grpc.codegen.Fs2CodeGenerator",
+        "scala": "scalapb.validate.compiler.CodeGenerator"
     },
     with_grpc = True,
     with_flat_package = True
