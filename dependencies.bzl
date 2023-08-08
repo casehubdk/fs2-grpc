@@ -34,7 +34,8 @@ project_deps = [
 
     scala_dependency("com.thesamet.scalapb", "scalapb-validate-core" , "0.3.4"),
     scala_dependency("com.thesamet.scalapb", "scalapb-validate-codegen" , "0.3.4"),
-    scala_dependency("com.thesamet.scalapb.common-protos", "proto-google-common-protos-scalapb_0.11", "2.9.6-0")
+    scala_dependency("com.thesamet.scalapb.common-protos", "proto-google-common-protos-scalapb_0.11", "2.9.6-0"),
+    java_dependency("io.envoyproxy.protoc-gen-validate", "protoc-gen-validate", "0.6.13")
 ]
 
 def add_scala_fullver(s):
