@@ -31,6 +31,11 @@ project_deps = [
     # usage
     java_dependency("io.grpc", "grpc-netty-shaded", grpc_version),
     scala_dependency("org.typelevel", "fs2-grpc-runtime", "2.7.4"),
+
+    scala_dependency("com.thesamet.scalapb", "scalapb-validate-core" , "0.3.4"),
+    scala_dependency("com.thesamet.scalapb", "scalapb-validate-codegen" , "0.3.4"),
+    scala_dependency("com.thesamet.scalapb.common-protos", "proto-google-common-protos-scalapb_0.11", "2.9.6-0"),
+    java_dependency("io.envoyproxy.protoc-gen-validate", "protoc-gen-validate", "0.6.13")
 ]
 
 def add_scala_fullver(s):
