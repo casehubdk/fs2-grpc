@@ -48,11 +48,11 @@ load("@maven//:defs.bzl", "pinned_maven_install")
 pinned_maven_install()
 
 # scala
-rules_scala_version = "3dd5d8110d56cfc19722532866cbfc039a6a9612"  # update this as needed
+rules_scala_version = "9c0f6b942b2a2555c41b622b41280a45bf7cb92e"  # update this as needed
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "d805d4c3e288f87909c0eba177facc2d945f1eeb67f4bd78e96afc51fa25e03c",
+    sha256 = "e2db6f08109d4ec11cac07c98ceabdbc5cf0b8adbd798d35037f475836d81a23",
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
