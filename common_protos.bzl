@@ -70,5 +70,15 @@ proto_library(
       name = "google_api_common_protos",
       # sha256 = "22087a397beb5d40ff9c93463c61643d05bcabe1dfcbe67511e87f61385e9e54",
       strip_prefix = "api-common-protos-%s" % google_api_common_protos_sha,
-      url = "https://github.com/googleapis/api-common-protos/archive/%s.zip" % google_api_common_protos_sha
+      url = "https://github.com/googleapis/api-common-protos/archive/%s.zip" % google_api_common_protos_sha,
+      build_file_content = """
+proto_library(
+    name = "rpc_protos",
+    visibility = ["//visibility:public"],
+    srcs = glob(["google/rpc/**/*.proto"]),
+    deps = [
+      "@common_protos//:common_protos"
+    ],
+)
+      """
   )

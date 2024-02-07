@@ -53,7 +53,7 @@ declare_deps_provider(
     "@maven//:org_scala_lang_scala_library",
     "@maven//:org_scala_lang_scala_reflect",
 "@maven//:com_thesamet_scalapb_common_protos_proto_google_common_protos_scalapb_0_11_2_13",
-"@maven//:com_google_api_grpc_proto_google_common_protos"
+# "@maven//:com_google_api_grpc_proto_google_common_protos"
     # "@maven//:com_thesamet_scalapb_common_protos_pgv_proto_scalapb_0_11_2_13",
   ]
 )
@@ -109,6 +109,7 @@ scala_proto_toolchain(
     blacklisted_protos = [
       "@google_api_common_protos//google/api:annotations_proto",
       "@google_api_common_protos//google/api:http_proto",
+      "@google_api_common_protos//:rpc_protos",
       "@validate_scalapb_protos//:validate_scalapb_protos"
     ]
 )
