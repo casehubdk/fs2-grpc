@@ -36,7 +36,7 @@ scala_library(
     name = "runtime",
     srcs = glob(["runtime/src/main/**/*.scala"]),
     plugins = [
-        "@maven//:org_typelevel_kind_projector_2_13_12",
+        "@maven//:org_typelevel_kind_projector_2_13_14",
     ],
     unused_dependency_checker_ignored_targets = ["@maven//:com_thesamet_scalapb_protoc_gen_2_13"],
     scalacopts = flags,
