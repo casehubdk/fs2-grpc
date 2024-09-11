@@ -7,7 +7,7 @@ scala_versions = make_scala_versions(
     "14",
 )
 
-grpc_version = "1.54.1"
+grpc_version = "1.62.2"
 
 project_deps = [
     scala_fullver_dependency("org.typelevel", "kind-projector", "0.13.2"),
@@ -17,9 +17,9 @@ project_deps = [
     java_dependency("org.scala-lang", "scala-reflect", "2.13.11"),
 
     # gen
-    scala_dependency("com.thesamet.scalapb", "compilerplugin", "0.11.13"),
-    scala_dependency("com.thesamet.scalapb", "scalapb-runtime", "0.11.13"),
-    scala_dependency("com.thesamet.scalapb", "scalapb-runtime-grpc", "0.11.13"),
+    scala_dependency("com.thesamet.scalapb", "compilerplugin", "0.11.17"),
+    scala_dependency("com.thesamet.scalapb", "scalapb-runtime", "0.11.17"),
+    scala_dependency("com.thesamet.scalapb", "scalapb-runtime-grpc", "0.11.17"),
     scala_dependency("com.thesamet.scalapb", "protoc-gen", "0.9.6"),
     java_dependency("io.grpc", "grpc-stub", grpc_version),
     java_dependency("io.grpc", "grpc-protobuf", grpc_version),
